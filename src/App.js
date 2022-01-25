@@ -1,13 +1,14 @@
-import { render } from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+
 import SearchParams from "./SearchParams";
 
 const App = () => {
-  return (
-    <div>
-      <h1>Adopt Me!</h1>
-      <SearchParams />
-    </div>
-  );
+	return (
+		<div>
+			<h1>Adopte me</h1>
+			<SearchParams />
+		</div>
+	);
 };
-
-render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
