@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Pet from "./pet";
+import useBreedList from "./useBreedList";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
@@ -8,12 +9,11 @@ const SearchParams = () => {
 	const [animal, setAnimal] = useState("");
 	const [breed, setBreed] = useState("");
 	const [pets, setPets] = useState([]);
-	const breeds = [];
+	const [breeds] = useBreedList(animal);
 
 	useEffect(() => {
 		requestPets();
-	
-	},[]);//eslint-disable-line 
+	}, []); //eslint-disable-line
 
 	async function requestPets() {
 		const res = await fetch(
@@ -22,7 +22,7 @@ const SearchParams = () => {
 		const json = await res.json();
 
 		console.log(json);
-		
+
 		setPets(json.pets);
 	}
 
@@ -76,7 +76,14 @@ const SearchParams = () => {
 				</label>
 				<button>Submit</button>
 			</form>
-			{pets.map(pet =>(<Pet name={pet.name} animal={pet.animal} breed={pet.breed} key={pet.id}/>))}
+			{pets.map((pet) => (
+				<Pet
+					name={pet.name}
+					animal={pet.animal}
+					breed={pet.breed}
+					key={pet.id}
+				/>
+			))}
 		</div>
 	);
 };
