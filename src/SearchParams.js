@@ -26,12 +26,18 @@ const SearchParams = () => {
 		setPets(json.pets);
 	}
 
+	const handleSubmit = (e) => {
+		// predefined function
+		e.preventDefault();
+		requestPets();
+	};
+	
 	const handlechange = (e) => {
 		setLocation(e.target.value);
 	};
 	return (
 		<div className="search-params">
-			<form>
+			<form onSubmit={handleSubmit}>
 				<label htmlFor="location">
 					Location
 					<input
